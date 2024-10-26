@@ -1,0 +1,32 @@
+name: console_app
+description: A sample command-line application.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.5.3
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.24.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/  # Ensure this line is included to reference your font assets
+
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
+        - asset: assets/fonts/NotoSans-Bold.ttf
+          weight: 700
