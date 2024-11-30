@@ -15,6 +15,7 @@ include: package:lints/recommended.yaml
 analyzer:
   errors:
     depend_on_referenced_packages: ignore
+    library_private_types_in_public_api: ignore
 
 # Uncomment the following section to specify additional rules.
 
