@@ -23,8 +23,8 @@ flutter:
 
   assets:
     - assets/fonts/ 
-    - assets/background.jpg
-    
+    - assets/background.png
+
   fonts:
     - family: NotoSans
       fonts:
