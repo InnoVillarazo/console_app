@@ -25,6 +25,15 @@ class _ClassroomSelectionPageState extends State<ClassroomSelectionPage> {
     }
   }
 
+  void _deleteClassroom(String classroom) {
+    setState(() {
+      _classrooms.remove(classroom);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Classroom "$classroom" deleted successfully!')),
+    );
+  }
+
   void _navigateToStudentManagement(String classroom) {
     Navigator.push(
       context,
@@ -61,9 +70,7 @@ class _ClassroomSelectionPageState extends State<ClassroomSelectionPage> {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: _addClassroom,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // Button color
-                ),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 child: const Text('Add Classroom'),
               ),
               const SizedBox(height: 20),
@@ -72,15 +79,15 @@ class _ClassroomSelectionPageState extends State<ClassroomSelectionPage> {
                   itemCount: _classrooms.length,
                   itemBuilder: (context, index) {
                     final classroom = _classrooms[index];
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.pink[100], // Light pink background color
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                    return Card(
+                      color: Colors.pink[100],
                       child: ListTile(
                         title: Text(classroom),
                         onTap: () => _navigateToStudentManagement(classroom),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          onPressed: () => _deleteClassroom(classroom),
+                        ),
                       ),
                     );
                   },

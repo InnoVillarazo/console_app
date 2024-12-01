@@ -1,7 +1,7 @@
 class User {
   final String id;
   final String name;
-  final int age;
+  final String yearAndSection; // Updated to "Year & Section"
 
-  User({required this.id, required this.name, required this.age});
+  User({required this.id, required this.name, required this.yearAndSection});
 }
