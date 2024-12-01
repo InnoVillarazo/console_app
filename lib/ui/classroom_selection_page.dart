@@ -41,38 +41,30 @@ class _ClassroomSelectionPageState extends State<ClassroomSelectionPage> {
         title: const Text('Classroom Selection'),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/background.jpg'), // Path to your background image
-            fit: BoxFit.cover, // Ensures the image covers the whole background
+            image: AssetImage('assets/background.jpg'),
+            fit: BoxFit.cover,
           ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              // Add a semi-transparent background for the input field
-              Container(
-                color: Colors.black.withOpacity(0.5), // Semi-transparent black
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: TextField(
-                  controller: _controller,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter Classroom Name',
-                    border: OutlineInputBorder(),
-                    labelStyle: TextStyle(color: Colors.white), // Adjust color for readability
-                  ),
-                  style: const TextStyle(color: Colors.white), // Input text color
+              TextField(
+                controller: _controller,
+                decoration: const InputDecoration(
+                  labelText: 'Enter Classroom Name',
+                  border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 10),
-              // Add a semi-transparent background for the button
-              Container(
-                color: Colors.black.withOpacity(0.5), // Semi-transparent black
-                child: ElevatedButton(
-                  onPressed: _addClassroom,
-                  child: const Text('Add Classroom', style: TextStyle(color: Colors.white)), // Button text color
+              ElevatedButton(
+                onPressed: _addClassroom,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue, // Button color
                 ),
+                child: const Text('Add Classroom'),
               ),
               const SizedBox(height: 20),
               Expanded(
@@ -80,12 +72,16 @@ class _ClassroomSelectionPageState extends State<ClassroomSelectionPage> {
                   itemCount: _classrooms.length,
                   itemBuilder: (context, index) {
                     final classroom = _classrooms[index];
-                    return ListTile(
-                      title: Text(
-                        classroom,
-                        style: const TextStyle(color: Colors.white), // Adjust color for readability
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.pink[100], // Light pink background color
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      onTap: () => _navigateToStudentManagement(classroom),
+                      child: ListTile(
+                        title: Text(classroom),
+                        onTap: () => _navigateToStudentManagement(classroom),
+                      ),
                     );
                   },
                 ),

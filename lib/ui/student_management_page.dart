@@ -18,47 +18,62 @@ class StudentManagementPage extends ConsumerWidget {
         title: Text('Student Management for $classroomName'),
         backgroundColor: Colors.teal,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: students.length,
-                itemBuilder: (context, index) {
-                  final student = students[index];
-                  return Card(
-                    margin: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: ListTile(
-                      title: Text(student.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-                      subtitle: Text('ID: ${student.id}, Age: ${student.age}'),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.delete, color: Colors.red),
-                        onPressed: () {
-                          final success = studentService.removeStudentFromClassroom(classroomName, student.id);
-                          if (success) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Student removed successfully!')),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Failed to remove student.')),
-                            );
-                          }
-                        },
-                      ),
-                    ),
-                  );
-                },
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Opacity(
+              opacity: 0.2, // Adjust opacity for better readability
+              child: Image.asset(
+                'assets/background_student_management.jpg', // Replace with your image path
+                fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => showAddStudentDialog(context, ref),
-              child: const Text('Add Student'),
+          ),
+          // Main content
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: students.length,
+                    itemBuilder: (context, index) {
+                      final student = students[index];
+                      return Card(
+                        margin: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: ListTile(
+                          title: Text(student.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('ID: ${student.id}, Age: ${student.age}'),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete, color: Colors.red),
+                            onPressed: () {
+                              final success = studentService.removeStudentFromClassroom(classroomName, student.id);
+                              if (success) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Student removed successfully!')),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Failed to remove student.')),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () => showAddStudentDialog(context, ref),
+                  child: const Text('Add Student'),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -159,4 +174,3 @@ class AddStudentForm extends ConsumerWidget {
     );
   }
 }
-  

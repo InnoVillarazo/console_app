@@ -24,6 +24,8 @@ flutter:
   assets:
     - assets/fonts/ 
     - assets/background.jpg
+    - assets/background_student_management.jpg
+
 
   fonts:
     - family: NotoSans
